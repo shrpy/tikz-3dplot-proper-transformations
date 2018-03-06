@@ -1,0 +1,105 @@
+%=======================================================================%
+% [Tait-Bryan] intrinsic (relative) transformation (x-y'-z") = (RPY)
+%=======================================================================%
+\newcommand{\tdsetxyzrel}{
+\renewcommand{\tdplotcalctransformrotmain}{
+%-----------------------------------------------------------------------%
+% calculate sin and cos from all angles
+%-----------------------------------------------------------------------%
+\tdplotsinandcos{\sa}{\ca}{\tdplotalpha} 
+\tdplotsinandcos{\sb}{\cb}{\tdplotbeta}
+\tdplotsinandcos{\sg}{\cg}{\tdplotgamma}
+%-----------------------------------------------------------------------%
+% calculate all possible multiplications of sin/cos in a,b,g
+%-----------------------------------------------------------------------%
+\tdplotmult{\sasb}{\sa}{\sb}
+\tdplotmult{\sacb}{\sa}{\cb}
+\tdplotmult{\casb}{\ca}{\sb}
+\tdplotmult{\cacb}{\ca}{\cb}
+%-----------------------------------------------------------------------%
+\tdplotmult{\sasg}{\sa}{\sg}
+\tdplotmult{\sacg}{\sa}{\cg}
+\tdplotmult{\casg}{\ca}{\sg}
+\tdplotmult{\cacg}{\ca}{\cg}
+%-----------------------------------------------------------------------%
+\tdplotmult{\sbsg}{\sb}{\sg}
+\tdplotmult{\sbcg}{\sb}{\cg}
+\tdplotmult{\cbsg}{\cb}{\sg}
+\tdplotmult{\cbcg}{\cb}{\cg}
+%-----------------------------------------------------------------------%
+\tdplotmult{\sasbsg}{\sasb}{\sg}
+\tdplotmult{\sasbcg}{\sasb}{\cg}
+\tdplotmult{\sacbsg}{\sacb}{\sg}
+\tdplotmult{\sacbcg}{\sacb}{\cg}
+\tdplotmult{\casbsg}{\casb}{\sg}
+\tdplotmult{\casbcg}{\casb}{\cg}
+\tdplotmult{\cacbsg}{\cacb}{\sg}
+\tdplotmult{\cacbcg}{\cacb}{\cg}
+%-----------------------------------------------------------------------%
+% define rotation matrix according to x-y'-z"-convention
+% source: https://en.wikipedia.org/wiki/Euler_angles#Rotation_matrix
+%-----------------------------------------------------------------------%
+\pgfmathsetmacro{\raaeul}{\cbcg}
+\pgfmathsetmacro{\rabeul}{-\cbsg}
+\pgfmathsetmacro{\raceul}{\sb}
+\pgfmathsetmacro{\rbaeul}{\sasbcg + \casg}
+\pgfmathsetmacro{\rbbeul}{-\sasbsg + \cacg}
+\pgfmathsetmacro{\rbceul}{-\sacb}
+\pgfmathsetmacro{\rcaeul}{-\casbcg + \sasg}
+\pgfmathsetmacro{\rcbeul}{\casbsg + \sacg}
+\pgfmathsetmacro{\rcceul}{\cacb}
+%-----------------------------------------------------------------------%
+}}
+
+%=======================================================================%
+% [Tait-Bryan] extrinsic (absolute) transformation (x-y-z)
+%=======================================================================%
+\newcommand{\tdsetxyzabs}{
+\renewcommand{\tdplotcalctransformrotmain}{
+%-----------------------------------------------------------------------%
+% calculate sin and cos from all angles
+%-----------------------------------------------------------------------%
+\tdplotsinandcos{\sa}{\ca}{\tdplotalpha} 
+\tdplotsinandcos{\sb}{\cb}{\tdplotbeta}
+\tdplotsinandcos{\sg}{\cg}{\tdplotgamma}
+%-----------------------------------------------------------------------%
+% calculate all possible multiplications of sin/cos in a,b,g
+%-----------------------------------------------------------------------%
+\tdplotmult{\sasb}{\sa}{\sb}
+\tdplotmult{\sacb}{\sa}{\cb}
+\tdplotmult{\casb}{\ca}{\sb}
+\tdplotmult{\cacb}{\ca}{\cb}
+%-----------------------------------------------------------------------%
+\tdplotmult{\sasg}{\sa}{\sg}
+\tdplotmult{\sacg}{\sa}{\cg}
+\tdplotmult{\casg}{\ca}{\sg}
+\tdplotmult{\cacg}{\ca}{\cg}
+%-----------------------------------------------------------------------%
+\tdplotmult{\sbsg}{\sb}{\sg}
+\tdplotmult{\sbcg}{\sb}{\cg}
+\tdplotmult{\cbsg}{\cb}{\sg}
+\tdplotmult{\cbcg}{\cb}{\cg}
+%-----------------------------------------------------------------------%
+\tdplotmult{\sasbsg}{\sasb}{\sg}
+\tdplotmult{\sasbcg}{\sasb}{\cg}
+\tdplotmult{\sacbsg}{\sacb}{\sg}
+\tdplotmult{\sacbcg}{\sacb}{\cg}
+\tdplotmult{\casbsg}{\casb}{\sg}
+\tdplotmult{\casbcg}{\casb}{\cg}
+\tdplotmult{\cacbsg}{\cacb}{\sg}
+\tdplotmult{\cacbcg}{\cacb}{\cg}
+%-----------------------------------------------------------------------%
+% define rotation matrix according to x-y-y-convention
+% extrinsic matrix = intrinsic matrix transposed and with negative angles
+%-----------------------------------------------------------------------%
+\pgfmathsetmacro{\raaeul}{\cbcg}
+\pgfmathsetmacro{\rabeul}{\sasbcg - \casg}
+\pgfmathsetmacro{\raceul}{\casbcg + \sasg}
+\pgfmathsetmacro{\rbaeul}{\cbsg}
+\pgfmathsetmacro{\rbbeul}{\sasbsg + \cacg}
+\pgfmathsetmacro{\rbceul}{\casbsg - \sacg}
+\pgfmathsetmacro{\rcaeul}{-\sb}
+\pgfmathsetmacro{\rcbeul}{\sacb}
+\pgfmathsetmacro{\rcceul}{\cacb}
+%-----------------------------------------------------------------------%
+}}
