@@ -1,0 +1,189 @@
+\documentclass{article}
+\usepackage{tikz,tikz-3dplot}
+
+\begin{document}
+\tdplotsetmaincoords{80}{30}
+
+\section{Tait-Bryan-Angles}
+\input{rotation_xyz.tex}
+Left: intrinsic (relative) transformation) \\
+Right: extrinsic (absolute) transformation)
+
+\begin{center}
+\begin{tikzpicture}[scale=1.5,tdplot_main_coords]
+%------------------------------------------------------------------%
+\coordinate (A0) at (0,0,0);
+\coordinate (A1) at (0,0,3);
+\coordinate (A2) at (0,0,6);
+\coordinate (A3) at (0,0,9);
+%------------------------------------------------------------------%
+\coordinate (B0) at (4,4,0);
+\coordinate (B1) at (4,4,3);
+\coordinate (B2) at (4,4,6);
+\coordinate (B3) at (4,4,9);
+%==================================================================%
+% intrinsic (relative) transformation (x-y'-z")
+%==================================================================%
+\begin{scope}[thick,->,>=latex]
+\draw (A0) -- ++(1,0,0) node[anchor=north]{$x$};
+\draw (A0) -- ++(0,1,0) node[anchor=south]{$y$};
+\draw (A0) -- ++(0,0,1) node[anchor=south]{$z$};
+\end{scope}
+%------------------------------------------------------------------%
+\tdsetxyzrel
+\tdplotsetrotatedcoordsorigin{(A1)}
+\tdplotsetrotatedcoords{90}{0}{0}
+\begin{scope}[->,>=latex,thick,tdplot_rotated_coords,red]
+\draw (A1) -- ++(1,0,0) node[anchor=north]{$x$};
+\draw (A1) -- ++(0,1,0) node[anchor=south]{$y$};
+\draw (A1) -- ++(0,0,1) node[anchor=south ]{$z$};
+\end{scope}
+%------------------------------------------------------------------%
+\tdsetxyzrel
+\tdplotsetrotatedcoordsorigin{(A2)}
+\tdplotsetrotatedcoords{90}{90}{0}
+\begin{scope}[->,>=latex,thick,tdplot_rotated_coords,violet]
+\draw (A2) -- ++(1,0,0) node[anchor=north]{$x$};
+\draw (A2) -- ++(0,1,0) node[anchor=south]{$y$};
+\draw (A2) -- ++(0,0,1) node[anchor=south ]{$z$};
+\end{scope}
+%------------------------------------------------------------------%
+\tdsetxyzrel
+\tdplotsetrotatedcoordsorigin{(A3)}
+\tdplotsetrotatedcoords{90}{90}{90}
+\begin{scope}[->,>=latex,thick,tdplot_rotated_coords,blue]
+\draw (A3) -- ++(1,0,0) node[anchor=north]{$x$};
+\draw (A3) -- ++(0,1,0) node[anchor=south]{$y$};
+\draw (A3) -- ++(0,0,1) node[anchor=south ]{$z$};
+\end{scope}
+%==================================================================%
+% extrinsic (absolute) transformation (x-y-z)
+%==================================================================%
+\begin{scope}[thick,->,>=latex]
+\draw (B0) -- ++(1,0,0) node[anchor=north]{$x$};
+\draw (B0) -- ++(0,1,0) node[anchor=south]{$y$};
+\draw (B0) -- ++(0,0,1) node[anchor=south]{$z$};
+\end{scope}
+%------------------------------------------------------------------%
+\tdsetxyzabs
+\tdplotsetrotatedcoordsorigin{(B1)}
+\tdplotsetrotatedcoords{90}{0}{0}
+\begin{scope}[->,>=latex,thick,tdplot_rotated_coords,red]
+\draw (B1) -- ++(1,0,0) node[anchor=north]{$x$};
+\draw (B1) -- ++(0,1,0) node[anchor=south]{$y$};
+\draw (B1) -- ++(0,0,1) node[anchor=south ]{$z$};
+\end{scope}
+%------------------------------------------------------------------%
+\tdsetxyzabs
+\tdplotsetrotatedcoordsorigin{(B2)}
+\tdplotsetrotatedcoords{90}{90}{0}
+\begin{scope}[->,>=latex,thick,tdplot_rotated_coords,violet]
+\draw (B2) -- ++(1,0,0) node[anchor=north]{$x$};
+\draw (B2) -- ++(0,1,0) node[anchor=south]{$y$};
+\draw (B2) -- ++(0,0,1) node[anchor=south ]{$z$};
+\end{scope}
+%------------------------------------------------------------------%
+\tdsetxyzabs
+\tdplotsetrotatedcoordsorigin{(B3)}
+\tdplotsetrotatedcoords{90}{90}{90}
+\begin{scope}[->,>=latex,thick,tdplot_rotated_coords,blue]
+\draw (B3) -- ++(1,0,0) node[anchor=north]{$x$};
+\draw (B3) -- ++(0,1,0) node[anchor=south]{$y$};
+\draw (B3) -- ++(0,0,1) node[anchor=south ]{$z$};
+\end{scope}
+%------------------------------------------------------------------%
+\end{tikzpicture}
+\end{center}
+
+\newpage
+\section{Proper Euler angles}
+\input{rotation_zyz.tex}
+Left: intrinsic (relative) transformation) \\
+Right: extrinsic (absolute) transformation)
+
+\begin{center}
+\begin{tikzpicture}[scale=1.5,tdplot_main_coords]
+%------------------------------------------------------------------%
+\coordinate (A0) at (0,0,0);
+\coordinate (A1) at (0,0,3);
+\coordinate (A2) at (0,0,6);
+\coordinate (A3) at (0,0,9);
+%------------------------------------------------------------------%
+\coordinate (B0) at (4,4,0);
+\coordinate (B1) at (4,4,3);
+\coordinate (B2) at (4,4,6);
+\coordinate (B3) at (4,4,9);
+%==================================================================%
+% intrinsic (relative) transformation (x-y'-z")
+%==================================================================%
+\begin{scope}[thick,->,>=latex]
+\draw (A0) -- ++(1,0,0) node[anchor=north]{$x$};
+\draw (A0) -- ++(0,1,0) node[anchor=south]{$y$};
+\draw (A0) -- ++(0,0,1) node[anchor=south]{$z$};
+\end{scope}
+%------------------------------------------------------------------%
+\tdsetzyzrel
+\tdplotsetrotatedcoordsorigin{(A1)}
+\tdplotsetrotatedcoords{90}{0}{0}
+\begin{scope}[->,>=latex,thick,tdplot_rotated_coords,red]
+\draw (A1) -- ++(1,0,0) node[anchor=north]{$x$};
+\draw (A1) -- ++(0,1,0) node[anchor=south]{$y$};
+\draw (A1) -- ++(0,0,1) node[anchor=south ]{$z$};
+\end{scope}
+%------------------------------------------------------------------%
+\tdsetzyzrel
+\tdplotsetrotatedcoordsorigin{(A2)}
+\tdplotsetrotatedcoords{90}{90}{0}
+\begin{scope}[->,>=latex,thick,tdplot_rotated_coords,violet]
+\draw (A2) -- ++(1,0,0) node[anchor=north]{$x$};
+\draw (A2) -- ++(0,1,0) node[anchor=south]{$y$};
+\draw (A2) -- ++(0,0,1) node[anchor=south ]{$z$};
+\end{scope}
+%------------------------------------------------------------------%
+\tdsetzyzrel
+\tdplotsetrotatedcoordsorigin{(A3)}
+\tdplotsetrotatedcoords{90}{90}{90}
+\begin{scope}[->,>=latex,thick,tdplot_rotated_coords,blue]
+\draw (A3) -- ++(1,0,0) node[anchor=north]{$x$};
+\draw (A3) -- ++(0,1,0) node[anchor=south]{$y$};
+\draw (A3) -- ++(0,0,1) node[anchor=south ]{$z$};
+\end{scope}
+%==================================================================%
+% extrinsic (absolute) transformation (x-y-z)
+%==================================================================%
+\begin{scope}[thick,->,>=latex]
+\draw (B0) -- ++(1,0,0) node[anchor=north]{$x$};
+\draw (B0) -- ++(0,1,0) node[anchor=south]{$y$};
+\draw (B0) -- ++(0,0,1) node[anchor=south]{$z$};
+\end{scope}
+%------------------------------------------------------------------%
+\tdsetzyzabs
+\tdplotsetrotatedcoordsorigin{(B1)}
+\tdplotsetrotatedcoords{90}{0}{0}
+\begin{scope}[->,>=latex,thick,tdplot_rotated_coords,red]
+\draw (B1) -- ++(1,0,0) node[anchor=north]{$x$};
+\draw (B1) -- ++(0,1,0) node[anchor=south]{$y$};
+\draw (B1) -- ++(0,0,1) node[anchor=south ]{$z$};
+\end{scope}
+%------------------------------------------------------------------%
+\tdsetzyzabs
+\tdplotsetrotatedcoordsorigin{(B2)}
+\tdplotsetrotatedcoords{90}{90}{0}
+\begin{scope}[->,>=latex,thick,tdplot_rotated_coords,violet]
+\draw (B2) -- ++(1,0,0) node[anchor=north]{$x$};
+\draw (B2) -- ++(0,1,0) node[anchor=south]{$y$};
+\draw (B2) -- ++(0,0,1) node[anchor=south ]{$z$};
+\end{scope}
+%------------------------------------------------------------------%
+\tdsetzyzabs
+\tdplotsetrotatedcoordsorigin{(B3)}
+\tdplotsetrotatedcoords{90}{90}{90}
+\begin{scope}[->,>=latex,thick,tdplot_rotated_coords,blue]
+\draw (B3) -- ++(1,0,0) node[anchor=north]{$x$};
+\draw (B3) -- ++(0,1,0) node[anchor=south]{$y$};
+\draw (B3) -- ++(0,0,1) node[anchor=south ]{$z$};
+\end{scope}
+%------------------------------------------------------------------%
+\end{tikzpicture}
+\end{center}
+\end{document}
